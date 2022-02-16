@@ -10,7 +10,7 @@
       <div style="width: 40%; margin: 0 auto">
         <h2>Escríbenos !!!</h2>
         <div class="resultado" style="color: green; font-style: italic"></div>
-        <form id="formulario" onsubmit="return validacion()">
+        <form id="formulario" onsubmit="return validate()">
           <div>
             <div style="display: flex; flex-direction: column">
               <label> Nombre completo </label>
@@ -29,7 +29,7 @@
             <p class="errorMensaje" style="color: red; font-style: italic"></p>
           </div>
           <div>
-            <button id="botton" type="submit">Envíar mensaje</button>
+            <button id="botton" type="submit" onclick="validate()">Envíar mensaje</button>
           </div>
         </form>
       </div>
@@ -40,7 +40,55 @@
               const pattern = /a-zA-Z/;
               document.getElementsByClassName("errorNombre").innerHTML != pattern.test(text);
                */
-       
+
+             /*  const valida = document.getElementById("nombre")
+              if (valida == ' ' ) {
+                const div = document.querySelector(".errorNombre");  // <div></div>
+                errorNombre.textContent = "Debe Ingresar un Nombre"; 
+              }else{
+
+              } */
+              function validate() {
+               
+                
+                
+                const nombre = document.getElementById("nombre").value.trim();
+                const errorNombre = document.getElementsByClassName("errorNombre");
+                const asunto =document.getElementById("asunto").value.trim();
+                const errorAsunto = document.getElementsByClassName("errorAsunto");
+                const mensaje = document.getElementById("mensaje").value.trim();
+                const errorMensaje = document.getElementsByClassName("errorMensaje");
+
+
+                const letras = /[a-z]+/gi; //validador string
+                const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;//validador email
+
+                if (re.test(nombre)) {
+                    
+                    return true;
+                }
+                else {
+                  errorNombre[0].textContent = "Este Campo no Puede quedar Vacio";
+                    return false;
+                }
+                if (re.test(asunto)) {
+                    
+                    return true;
+                }
+                else {
+                  errorAsunto[0].textContent = "Este Campo no Puede quedar Vacio";
+                    return false;
+                }
+                if (re.test(mensaje)) {
+                    
+                    return true;
+                }
+                else {
+                  errorMensaje[0].textContent = "Este Campo no Puede quedar Vacio";
+                    return false;
+                }
+              }
     </script>
+    <!-- <script src="js/index.js"></script> -->
   </body>
 </html>
